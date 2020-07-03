@@ -14,29 +14,20 @@ env:
   IMAGE_NAME: docker-caddy2
 
 jobs:
-  test:
+  test_and_push:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: build and start
+
+    - name: Build and test image
       run: |
         set -e
         docker build . --file Dockerfile --tag image
         docker run --rm image /usr/bin/caddy version
 
-  push:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
     - name: Log into registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-
-    # - name: Build image
-    #   run: docker build . --file Dockerfile --tag image
 
     - name: Push image
       run: |
