@@ -23,7 +23,7 @@ jobs:
       run: |
         set -e
         docker build . --file Dockerfile --tag image
-        docker run --rm image -version
+        docker run --rm image /usr/bin/caddy version
 
   push:
     needs: test
