@@ -9,12 +9,12 @@ Run [Caddy][1] v2 webserver inside a docker container.
 Create directories:
 
 ```sh
-mkdir www caddy-data
+mkdir www caddy
 ```
 
 ```sh
 docker run -it --rm -v $(pwd)/Caddyfile:/etc/caddy/Caddyfile \
-  -v $(pwd)/caddy-data:/data -v $(pwd)/caddy-config:/config -v $(pwd)/www:/www sashk/docker-caddy2
+  -v $(pwd)/caddy:/caddy -v $(pwd)/www:/www docker.pkg.github.com/sashkab/docker-caddy2/docker-caddy2:latest
 ```
 
 ### docker-compose
@@ -24,11 +24,11 @@ version: "3"
 
 services:
   caddy:
-    image: sashk/docker-caddy2
+    image: docker.pkg.github.com/sashkab/docker-caddy2/docker-caddy2:latest
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy2:/root/.caddy
+      - caddy2:/caddy
       - ./path/to/www:/www
     ports:
      - "80:80"
