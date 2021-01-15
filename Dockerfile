@@ -11,7 +11,7 @@ RUN set -xe \
     && /usr/local/go/bin/go build -o /${GOPATH}/caddy -ldflags -w -trimpath \
     && "${GOPATH}/caddy" version
 
-FROM alpine:3.12
+FROM alpine:3.13
 
 LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.01.02"
 
