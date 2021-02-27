@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine as builder
+FROM golang:1.16-alpine as builder
 
 ENV GOPATH /go
 COPY ./src /src
@@ -13,7 +13,7 @@ RUN set -xe \
 
 FROM alpine:3.13
 
-LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.01.02"
+LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.02.26"
 
 RUN apk --no-cache add ca-certificates \
     && mkdir -p /caddy/config/caddy /caddy/data/caddy /etc/caddy
