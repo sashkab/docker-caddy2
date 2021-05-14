@@ -7,13 +7,13 @@ WORKDIR /src
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && /usr/local/go/bin/go mod init caddy \
-    && /usr/local/go/bin/go get -d -v github.com/caddyserver/caddy/v2@v2.3.0 \
+    && /usr/local/go/bin/go get -d -v github.com/caddyserver/caddy/v2@v2.4.0 \
     && /usr/local/go/bin/go build -o /${GOPATH}/caddy -ldflags -w -trimpath \
     && "${GOPATH}/caddy" version
 
 FROM alpine:3.13
 
-LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.02.26"
+LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.05.14"
 
 RUN apk --no-cache add ca-certificates \
     && mkdir -p /caddy/config/caddy /caddy/data/caddy /etc/caddy
