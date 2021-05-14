@@ -1,13 +1,12 @@
 FROM golang:1.16-alpine as builder
 
-ENV GOPATH /go
-COPY ./src /src
-WORKDIR /src
-
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
-    && xcaddy build v2.4.0 --with github.com/mholt/caddy-webdav --output /usr/bin/caddy
+    && xcaddy build v2.4.0 --with github.com/mholt/caddy-webdav --output /usr/bin/caddy \
+    && /usr/bin/caddy version \
+    && /usr/bin/caddy build-info \
+    && /usr/bin/caddy list-modules | grep webdav
 
 FROM alpine:3.13
 
