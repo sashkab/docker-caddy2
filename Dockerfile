@@ -1,24 +1,21 @@
-FROM golang:1.15-alpine as builder
-
-ENV GOPATH /go
-COPY ./src /src
-WORKDIR /src
+FROM golang:1.16-alpine as builder
 
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
-    && /usr/local/go/bin/go mod init caddy \
-    && /usr/local/go/bin/go get -d -v github.com/caddyserver/caddy/v2@v2.3.0 \
-    && /usr/local/go/bin/go build -o /${GOPATH}/caddy -ldflags -w -trimpath \
-    && "${GOPATH}/caddy" version
+    && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
+    && xcaddy build v2.4.0 --with github.com/mholt/caddy-webdav --output /usr/bin/caddy \
+    && /usr/bin/caddy version \
+    && /usr/bin/caddy build-info \
+    && /usr/bin/caddy list-modules | grep webdav
 
 FROM alpine:3.13
 
-LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.01.02"
+LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.05.14"
 
 RUN apk --no-cache add ca-certificates \
     && mkdir -p /caddy/config/caddy /caddy/data/caddy /etc/caddy
 
-COPY --from=builder /go/caddy /usr/bin/caddy
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 COPY index.html /www/index.html
 
 ENV XDG_CONFIG_HOME=/caddy/config
