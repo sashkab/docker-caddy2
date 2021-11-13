@@ -8,7 +8,7 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep webdav
 
-FROM alpine:3.14
+FROM alpine:3.14.3
 
 LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.11.09"
 
