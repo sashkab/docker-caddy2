@@ -8,9 +8,9 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep webdav
 
-FROM alpine:3.14.3
+FROM alpine:3.15.1
 
-LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2021.11.09"
+LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2022.03.22"
 
 RUN apk --no-cache add ca-certificates \
     && mkdir -p /caddy/config/caddy /caddy/data/caddy /etc/caddy
