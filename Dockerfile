@@ -11,9 +11,12 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep webdav
 
-FROM alpine:3.15.3
+FROM alpine:3.15.4
 
-LABEL description="caddy v2 server" maintainer="github@compuix.com" version="2022.03.30"
+LABEL \
+    version="2022.04.05" \
+    maintainer="github@compuix.com" \
+    description="caddy v2 server"
 
 RUN apk --no-cache add ca-certificates \
     && mkdir -p /caddy/config/caddy /caddy/data/caddy /etc/caddy
