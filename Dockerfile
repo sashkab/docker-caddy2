@@ -9,7 +9,7 @@ RUN set -xe \
             --output /usr/bin/caddy \
     && /usr/bin/caddy version \
     && /usr/bin/caddy build-info \
-    && /usr/bin/caddy list-modules | grep webdav
+    && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
 FROM alpine:3.15.4
 
