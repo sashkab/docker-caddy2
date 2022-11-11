@@ -11,10 +11,10 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
-FROM alpine:3.16.2
+FROM alpine:3.16.3
 
 LABEL \
-    version="2022.10.13" \
+    version="2022.11.11" \
     maintainer="github@compuix.com" \
     description="caddy v2 server"
 
