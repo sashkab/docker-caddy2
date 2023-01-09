@@ -11,7 +11,7 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
-FROM alpine:3.16.3
+FROM alpine:3.17.1
 
 LABEL \
     version="2022.11.11" \
