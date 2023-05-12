@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine as builder
+FROM golang:1.20-alpine as builder
 
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
@@ -11,10 +11,10 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
-FROM alpine:3.17.3
+FROM alpine:3.18.0
 
 LABEL \
-    version="2023.04.02" \
+    version="2023.05.11" \
     maintainer="github@compuix.com" \
     description="caddy v2 server"
 
