@@ -1,9 +1,9 @@
-FROM golang:1.20-alpine as builder
+FROM golang:1.21-alpine as builder
 
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
-    && xcaddy build v2.7.4 \
+    && xcaddy build v2.7.5 \
             --with github.com/mholt/caddy-webdav \
             --with github.com/caddyserver/transform-encoder \
             --output /usr/bin/caddy \
@@ -14,7 +14,7 @@ RUN set -xe \
 FROM alpine:3.18.4
 
 LABEL \
-    version="2023.09.28" \
+    version="2023.10.11" \
     maintainer="github@compuix.com" \
     description="caddy v2 server"
 
