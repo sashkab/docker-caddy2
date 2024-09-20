@@ -4,17 +4,17 @@ RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
     && xcaddy build v2.8.4 \
-            --with github.com/mholt/caddy-webdav \
-            --with github.com/caddyserver/transform-encoder \
-            --output /usr/bin/caddy \
+    --with github.com/mholt/caddy-webdav \
+    --with github.com/caddyserver/transform-encoder \
+    --output /usr/bin/caddy \
     && /usr/bin/caddy version \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
-FROM alpine:3.20.2
+FROM alpine:3.20.3
 
 LABEL \
-    version="2024.07.23" \
+    version="2024.09.20" \
     maintainer="github@compuix.com" \
     description="caddy v2 server"
 
