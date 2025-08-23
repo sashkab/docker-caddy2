@@ -3,7 +3,7 @@ FROM golang:1.25-alpine as builder
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
-    && xcaddy build v2.10.1 \
+    && xcaddy build v2.10.2 \
     --with github.com/mholt/caddy-webdav \
     --with github.com/caddyserver/transform-encoder \
     --output /usr/bin/caddy \
