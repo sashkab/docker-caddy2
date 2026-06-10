@@ -1,9 +1,9 @@
-FROM golang:1.25-alpine as builder
+FROM golang:1.26-alpine as builder
 
 RUN set -xe \
     && apk add --no-cache git musl-dev gcc \
     && go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest \
-    && xcaddy build v2.11.2 \
+    && xcaddy build v2.11.4 \
     --with github.com/mholt/caddy-webdav \
     --with github.com/caddyserver/transform-encoder \
     --output /usr/bin/caddy \
@@ -11,10 +11,10 @@ RUN set -xe \
     && /usr/bin/caddy build-info \
     && /usr/bin/caddy list-modules | grep -E "(webdav|transform)"
 
-FROM alpine:3.23.4
+FROM alpine:3.24.0
 
 LABEL \
-    version="2026.04.25" \
+    version="2026.06.09" \
     maintainer="github@compuix.com" \
     description="caddy v2 server"
 
