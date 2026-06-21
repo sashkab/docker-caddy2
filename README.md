@@ -14,7 +14,7 @@ mkdir www caddy
 
 ```sh
 docker run -it --rm -v $(pwd)/Caddyfile:/etc/caddy/Caddyfile \
-  -v $(pwd)/caddy:/caddy -v $(pwd)/www:/www docker.pkg.github.com/sashkab/docker-caddy2/docker-caddy2:latest
+  -v $(pwd)/caddy:/caddy -v $(pwd)/www:/www docker.pkg.github.com/sashkab/docker-caddy2:latest
 ```
 
 ### docker-compose
@@ -24,7 +24,7 @@ version: "3"
 
 services:
   caddy:
-    image: docker.pkg.github.com/sashkab/docker-caddy2/docker-caddy2:latest
+    image: docker.pkg.github.com/sashkab/docker-caddy2:latest
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
